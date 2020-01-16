@@ -165,6 +165,29 @@
 </body>
 
 <script>
+    //declare a new event listener on our window object and provide it two arguments, the event to listen for and the handler to fire once that event has occurred.
+    window.addEventListener("keypress",function(keyPressEvent){
+        //Within the handler of our event listener, add 2 variables.
+        const tone = document.querySelector(`audio[data-key="${keyPressEvent.keyCode}"]`);
+        if(!tone) return;
+        const pianoKey = document.querySelector(`.pianoKey[data-key="${keyPressEvent.keyCode}"]`);
+            
+            //set the currentTime of the tone to 0 before we play the tone
+            tone.currentTime = 0;
+            //add the class pressed to our pianoKey element.
+            pianoKey.classList.add("pressed");
+            //invoke the play method on our tone audio element.
+            tone.play();
+            //After our tone plays, remove the class pressed from our pianoKey element.
+            setTimeout(function(){
+            pianoKey.classList.remove("pressed");
+
+        },300);
+
+
+    });
+
+
 </script>
 
 </html>
